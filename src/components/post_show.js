@@ -5,8 +5,8 @@ import { fetchPost } from "../actions";
 class ShowPost extends Component {
 
     componentDidMount(){
-        const { id } = this.props.match.params.id;
-
+        const { id } = this.props.match.params;
+        // console.log(this.props);
         this.props.fetchPost(id);
     }
 
@@ -29,7 +29,8 @@ class ShowPost extends Component {
 }
 
 function mapStateToProps(state, ownProps){
-    return { post: posts[ownProps.match.params.id] };
+    console.log(state.posts);
+    return { post: state.posts[ownProps.match.params.id] };
 }
 
 export default connect(mapStateToProps,{ fetchPost })(ShowPost);
