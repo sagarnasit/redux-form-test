@@ -6,6 +6,7 @@ const API_KEY = '?key=merapehlaapp';
 export const FETCH_POSTS = 'fetch_posts';
 export const CREATE_POST = 'create_post';
 export const FETCH_POST = 'fetch_fetch';
+export const DELETE_POST = 'delte_post';
 
 export function fetchPosts() {
 
@@ -35,5 +36,15 @@ export function fetchPost(id) {
     return {
         type: FETCH_POST,
         payload: request,
+    }
+}
+
+export function deletePost(id, callback) {
+    const request = axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
+        .then( () => callback() );
+
+    return {
+        type: DELETE_POST,
+        payload: id
     }
 }
